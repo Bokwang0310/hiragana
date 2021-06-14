@@ -1,29 +1,51 @@
 const question = document.querySelector(".question");
 const answer = document.querySelector(".answer");
 const btn = document.querySelector(".util-btn");
+const modeSelector = document.querySelector(".mode-selector");
 
-const getRandomElement = (array) =>
-  array[Math.floor(Math.random() * array.length)];
+const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-const applyQuiz = (quizSet) => {
-  const [questionText, answerText] = quizSet;
+const shuffle = (arr) => [...arr].sort(() => 0.5 - Math.random());
 
+const setText = (questionText, answerText) => {
   question.innerText = questionText;
   answer.innerText = answerText;
 };
 
-async function init() {
+function startQuiz(quizSet, mode) {
+  switch (mode) {
+    case "hiragana":
+      return setText(...quizSet);
+
+    case "alphabet":
+      return setText(...[...quizSet].reverse());
+
+    case "random":
+      return setText(...shuffle(quizSet));
+  }
+}
+
+function initQuiz() {
+  answer.classList.remove("visible");
+  btn.innerText = "답";
+}
+
+(async function main() {
   const src = await fetch("./data.json").then((res) => res.json());
 
-  applyQuiz(getRandomElement(src));
+  startQuiz(getRandomElement(src), modeSelector.value);
 
   btn.addEventListener("click", () => {
     if (!answer.classList.toggle("visible")) {
-      applyQuiz(getRandomElement(src));
-      return (btn.innerText = "답");
+      startQuiz(getRandomElement(src), modeSelector.value);
+      btn.innerText = "답";
+      return;
     }
-    return (btn.innerText = "다음");
+    btn.innerText = "다음";
   });
-}
 
-init();
+  modeSelector.addEventListener("change", ({ target }) => {
+    initQuiz();
+    startQuiz(getRandomElement(src), target.value);
+  });
+})();
