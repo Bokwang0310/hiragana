@@ -1,3 +1,7 @@
+* {
+  user-select: none;
+}
+
 html,
 body {
   margin: 0;
@@ -6,9 +10,7 @@ body {
   height: 100%;
 }
 
-.answer {
-  display: inline;
-}
+.answer,
 .question {
   display: inline;
 }
@@ -17,7 +19,7 @@ body {
   display: none;
 }
 
-.answer.visible {
+.visible {
   display: inline;
 }
 

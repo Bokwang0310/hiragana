@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hiragana Wae An Hae</title>
-    <script src="./script.js" defer></script>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <select class="mode-selector">
       <option value="hiragana">히라가나 맞추기</option>
       <option value="alphabet">발음 맞추기</option>
-      <option value="random">랜덤</option>
+      <option value="random">아무거나 맞추기</option>
     </select>
     <div class="wrapper">
       <div class="q&a">
@@ -20,8 +19,9 @@
         <h1 class="answer"></h1>
       </div>
       <div class="buttons">
-        <button class="util-btn" >답</button>
-      </div class="buttons">
+        <button class="util-btn">답</button>
+      </div>
     </div>
+    <script src="script.js" type="module"></script>
   </body>
 </html>

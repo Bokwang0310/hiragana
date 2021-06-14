@@ -31,7 +31,7 @@ function initQuiz() {
 }
 
 (async function main() {
-  const src = await fetch("./data.json").then((res) => res.json());
+  const src = await fetch("data.json").then((res) => res.json());
 
   startQuiz(getRandomElement(src), modeSelector.value);
 
